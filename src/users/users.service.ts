@@ -201,7 +201,6 @@ export class UsersService
     createUserActivityDto: CreateUserActivityDto,
     request: Request,
   ) {
-    let response = new ResponseStandard();
     console.log('test1111111111111')
     const cookie = request.cookies['jwt'];
     console.log('test2222222222222')
@@ -315,8 +314,6 @@ export class UsersService
     } else {
       throw new BadRequestException('You are not loging in!!!');
     }
-
-    return response;
   }
 
   async postComment(commentDto: CommentDto, request: Request) {
