@@ -106,7 +106,7 @@ export class UsersController {
                         @Body() checkUserDto : CheckUserDto,
                         @Body() createActivityDto: CreateActivityDto,
                         @Req() request: Request) {
-    return this.usersService.postUserActivities1(createUserActivityDto,checkUserDto,createActivityDto,request);
+    return this.usersService.postUserActivities1(createUserActivityDto,request);
   }
 
   @Post('post_ratings')

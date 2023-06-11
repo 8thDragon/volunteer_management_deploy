@@ -199,8 +199,6 @@ export class UsersService
 
   async postUserActivities1(
     createUserActivityDto: CreateUserActivityDto,
-    createActivityDto: CreateActivityDto,
-    checkUserDto: CheckUserDto,
     request: Request,
   ) {
     let response = new ResponseStandard();
