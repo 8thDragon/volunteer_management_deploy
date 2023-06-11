@@ -202,8 +202,11 @@ export class UsersService
     request: Request,
   ) {
     let response = new ResponseStandard();
+    console.log('test1111111111111')
     const cookie = request.cookies['jwt'];
+    console.log('test2222222222222')
     const data = await this.jwtService.verifyAsync(cookie);
+    console.log('test3333333333333')
     let user = await this.userModel.findByPk(data['id'])
     let activityForDateCheck = this.activityModel.findOne({
       where: {
