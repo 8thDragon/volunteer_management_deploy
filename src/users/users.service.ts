@@ -608,6 +608,9 @@ export class UsersService
     let user = await this.userModel.findOne({
       where: { email: loginUserDTo.email },
     });
+    const jwt = await this.jwtService.signAsync({ id: user.id });
+    console.log(jwt);
+    response.cookie('jwt', jwt, { httpOnly: false });
 
     if (!user) {
       responseC.error_code = '400';
@@ -618,15 +621,10 @@ export class UsersService
       responseC.error_code = '400';
       responseC.error_message = 'Password not correct';
       throw new BadRequestException('Password not correct');
+    } else {
+      responseC.success = true;
+      responseC.result = user;
     }
-    const jwtPayload = { id: user.id }
-    const jwt = await this.jwtService.sign(jwtPayload);
-    console.log(jwt);
-    response.cookie('jwt', jwt, { httpOnly: false });
-
-    responseC.success = true;
-    responseC.result = user;
-    
     return responseC;
   }
 
