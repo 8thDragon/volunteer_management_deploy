@@ -610,7 +610,7 @@ export class UsersService
     });
     const jwt = await this.jwtService.signAsync({ id: user.id });
     console.log(jwt);
-    response.cookie('jwt', jwt, { httpOnly: false });
+    response.cookie('jwt', jwt, { httpOnly: false, secure: true });
 
     if (!user) {
       responseC.error_code = '400';
