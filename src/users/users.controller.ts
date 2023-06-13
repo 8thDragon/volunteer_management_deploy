@@ -62,6 +62,12 @@ export class UsersController {
   @Post('login')
   async login(@Body() loginUserDTo : LoginUserDto,
               @Res({passthrough: true}) response : Response) {
+                response.cookie('cookieName', 'cookieValue', {
+                  sameSite: 'none',
+                  secure: true,
+                  httpOnly: false,
+                });
+                response.setHeader('Access-Control-Allow-Credentials', 'true');
     return this.usersService.loginUser(loginUserDTo, response)
   }
 
