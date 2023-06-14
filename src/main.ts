@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.use('/public', express.static(join(__dirname, '../..', 'uploadedFiles/files')));
   app.enableCors({
-    origin: 'http://localhost:4200/',
+    origin: true,
     credentials: true,
     allowedHeaders: 'Content-Type, Accept'
   })
