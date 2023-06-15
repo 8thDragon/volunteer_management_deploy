@@ -610,7 +610,12 @@ export class UsersService
     });
     const jwt = await this.jwtService.signAsync({ id: user.id });
     console.log(jwt);
-    response.cookie('jwt', jwt, { httpOnly: false, secure: true });
+    response.cookie('jwt', jwt, { 
+      httpOnly: true, 
+      secure: true, 
+      sameSite: 'strict', 
+      maxAge: 86400000, 
+      path: '/', });
     response.setHeader('Set-Cookie', `jwt=${jwt}; Path=/; HttpOnly=true`);
 
     if (!user) {
