@@ -611,12 +611,11 @@ export class UsersService
     const jwt = await this.jwtService.signAsync({ id: user.id });
     console.log(jwt);
     response.cookie('jwt', jwt, { 
-      httpOnly: true, 
+      httpOnly: false, 
       secure: true, 
-      sameSite: 'strict', 
-      maxAge: 86400000, 
-      path: '/', });
-    response.setHeader('Set-Cookie', `jwt=${jwt}; Path=/; HttpOnly=true`);
+      sameSite: 'none',
+      domain: '.volunteerm.online' });
+    response.setHeader('Set-Cookie', `jwt=${jwt};`);
 
     if (!user) {
       responseC.error_code = '400';

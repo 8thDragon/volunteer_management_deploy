@@ -104,6 +104,17 @@ export class ActivitiesService {
     return user;
   }
 
+  async getTopRatedActivity() {
+    let activity = await this.activityModel.findAll({
+      where: {
+        is_open: true,
+      },
+      order: [['rating_point', 'DESC']],
+      limit: 3,
+    })
+    return activity;
+  }
+
   async updateBlacklist(checkUserDto: CheckUserDto, request: Request) {
     const cookie = request.cookies['jwt'];
     const data = await this.jwtService.verifyAsync(cookie);

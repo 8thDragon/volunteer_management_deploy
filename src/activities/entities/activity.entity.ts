@@ -27,6 +27,7 @@ export interface activityAttributes {
     is_open?: boolean;
     picture?: string;
     priority?: number;
+    rating_point?: number;
     ratings?: Rating[];
     files?: File[];
     userActivities?: UserActivity[];
