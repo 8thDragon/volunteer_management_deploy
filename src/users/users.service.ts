@@ -608,36 +608,65 @@ export class UsersService
     let user = await this.userModel.findOne({
       where: { email: loginUserDTo.email },
     });
-    // const jwt = await this.jwtService.signAsync({ id: user.id });
-    // console.log(jwt);
-    // response.cookie('jwt', jwt, { 
-    //   httpOnly: false, 
-    //   secure: true, 
-    //   sameSite: 'none',
-    //   domain: '.volunteerm.online' });
-    // response.setHeader('Set-Cookie', `jwt=${jwt};`);
 
     if (!user) {
       responseC.error_code = '400';
       responseC.error_message = 'Invalid User';
       throw new BadRequestException('Invalid User');
     }
+
     if (!(await bcrypt.compare(loginUserDTo.password, user.password))) {
       responseC.error_code = '400';
       responseC.error_message = 'Password not correct';
       throw new BadRequestException('Password not correct');
-    } else {
-      responseC.success = true;
-      responseC.result = user;
     }
 
     const jwt = await this.jwtService.signAsync({ id: user.id });
-    response.cookie('jwt', jwt, { httpOnly: false,domain:'.volunteerm.online', secure: true, sameSite: 'none'})
+    response.cookie('jwt', jwt, { httpOnly: false,domain:'.saksitmind.online', secure: true, sameSite: 'none'})
     responseC.success = true;
     responseC.result = user;
-    
+
     return responseC;
   }
+
+  // async loginUser(
+  //   loginUserDTo: LoginUserDto,
+  //   response: Response,
+  // ): Promise<any> {
+  //   let responseC = new ResponseStandard();
+  //   let user = await this.userModel.findOne({
+  //     where: { email: loginUserDTo.email },
+  //   });
+  //   // const jwt = await this.jwtService.signAsync({ id: user.id });
+  //   // console.log(jwt);
+  //   // response.cookie('jwt', jwt, { 
+  //   //   httpOnly: false, 
+  //   //   secure: true, 
+  //   //   sameSite: 'none',
+  //   //   domain: '.volunteerm.online' });
+  //   // response.setHeader('Set-Cookie', `jwt=${jwt};`);
+
+  //   if (!user) {
+  //     responseC.error_code = '400';
+  //     responseC.error_message = 'Invalid User';
+  //     throw new BadRequestException('Invalid User');
+  //   }
+  //   if (!(await bcrypt.compare(loginUserDTo.password, user.password))) {
+  //     responseC.error_code = '400';
+  //     responseC.error_message = 'Password not correct';
+  //     throw new BadRequestException('Password not correct');
+  //   } else {
+  //     responseC.success = true;
+  //     responseC.result = user;
+  //   }
+
+  //   const jwt = await this.jwtService.signAsync({ id: user.id });
+  //   response.cookie('jwt', jwt, { httpOnly: false,domain:'.volunteerm.online', secure: true, sameSite: 'none'})
+  //   responseC.success = true;
+  //   responseC.result = user;
+
+  //   return responseC;
+  // }
 
   async getUser(request: Request) {
     const cookie = request.cookies['jwt'];
