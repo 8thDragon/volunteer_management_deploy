@@ -622,7 +622,7 @@ export class UsersService
     }
 
     const jwt = await this.jwtService.signAsync({ id: user.id });
-    response.cookie('jwt', jwt, { httpOnly: false,domain:'.saksitmind.online', secure: true, sameSite: 'none'})
+    response.cookie('jwt', jwt, { httpOnly: false,domain:'.volunteerm.online', secure: true, sameSite: 'none'})
     responseC.success = true;
     responseC.result = user;
 
