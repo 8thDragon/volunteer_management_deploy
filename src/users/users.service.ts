@@ -608,14 +608,14 @@ export class UsersService
     let user = await this.userModel.findOne({
       where: { email: loginUserDTo.email },
     });
-    const jwt = await this.jwtService.signAsync({ id: user.id });
-    console.log(jwt);
-    response.cookie('jwt', jwt, { 
-      httpOnly: false, 
-      secure: true, 
-      sameSite: 'none',
-      domain: '.volunteerm.online' });
-    response.setHeader('Set-Cookie', `jwt=${jwt};`);
+    // const jwt = await this.jwtService.signAsync({ id: user.id });
+    // console.log(jwt);
+    // response.cookie('jwt', jwt, { 
+    //   httpOnly: false, 
+    //   secure: true, 
+    //   sameSite: 'none',
+    //   domain: '.volunteerm.online' });
+    // response.setHeader('Set-Cookie', `jwt=${jwt};`);
 
     if (!user) {
       responseC.error_code = '400';
@@ -630,6 +630,11 @@ export class UsersService
       responseC.success = true;
       responseC.result = user;
     }
+    const jwt = await this.jwtService.signAsync({ id: user.id });
+    response.cookie('jwt', jwt, { httpOnly: false,domain:'.volunteerm.online', secure: true, sameSite: 'none'})
+    responseC.success = true;
+    responseC.result = user;
+
     return responseC;
   }
 
