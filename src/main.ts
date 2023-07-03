@@ -13,7 +13,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.use('/public', express.static(join(__dirname, '../..', 'uploadedFiles/files')));
   app.enableCors({
-    origin: true,
+    origin: 'https://app.volunteerm.online',
     credentials: true,
     allowedHeaders: 'Content-Type, Accept'
   })
