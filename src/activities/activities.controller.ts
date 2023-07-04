@@ -198,6 +198,11 @@ export class ActivitiesController {
     return this.activitiesService.getAllUsersForUser()
   }
 
+  @Get('get_most_rated_activity')
+  async getTopRatedActivity() {
+    return this.activitiesService.getTopRatedActivity()
+  }
+
   @Post('fileupload')
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(
