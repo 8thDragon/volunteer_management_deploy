@@ -354,13 +354,16 @@ export class ActivitiesService {
     });
   }
 
-  async notifyUser(notifyDto: NotifyDto) {
+  async notifyUser(request: Request) {
+    const cookie = request.cookies['jwt'];
+    const data = await this.jwtService.verifyAsync(cookie);
+    let user = await this.userModel.findByPk(data['id']);
     let date_now = new Date(new Date().getTime() + 7 * 60 * 60 * 1000);
     let date_check = new Date(new Date().getTime() + 55 * 60 * 60 * 1000);
     console.log(date_check);
     return this.notificationModel.findAll({
       where: {
-        userId: notifyDto.userId,
+        userId: user.id,
         date: {
           [Op.gte]: date_now,
           [Op.lte]: date_check,

@@ -174,8 +174,9 @@ export class ActivitiesController {
   }
 
   @Post('notify_user')
-  async notifyUser(@Body() notifyDto: NotifyDto) {
-    return this.activitiesService.notifyUser(notifyDto)
+  async notifyUser(/*@Body() notifyDto: NotifyDto,*/
+                    @Req() request: Request) {
+    return this.activitiesService.notifyUser(request)
   }
 
   @Get('wait_to_start')
