@@ -173,7 +173,7 @@ export class ActivitiesController {
     return this.activitiesService.getUserAcForNotify()
   }
 
-  @Post('notify_user')
+  @Get('notify_user')
   async notifyUser(/*@Body() notifyDto: NotifyDto,*/
                     @Req() request: Request) {
     return this.activitiesService.notifyUser(request)
