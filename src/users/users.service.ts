@@ -395,6 +395,9 @@ export class UsersService
     // await activity.update({ rating_point: averrageRating})
     activity.rating_point = averrageRating;
     await activity.save();
+    return {
+      message : 'rated success'
+    }
   }
 
   async getForCertify(
