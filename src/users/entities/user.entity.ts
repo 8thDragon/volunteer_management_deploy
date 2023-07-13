@@ -155,7 +155,7 @@ export class User extends Model<userAttributes, userAttributes> implements userA
           subject: 'Verify your email address',
           text: 'Please click the following link to verify your email address:',
           html: `<p>Please click the following link to verify your email address:</p>
-                <a href="http://localhost:8000/users/verify-email?token=${this.emailVerificationToken}">Verify email address</a>`
+                <a href="https://api.volunteerm.online/users/verify-email?token=${this.emailVerificationToken}">Verify email address</a>`
         });
     
         console.log(`Verification email sent: ${info.messageId}`);
@@ -176,7 +176,7 @@ export class User extends Model<userAttributes, userAttributes> implements userA
         subject: 'Reset your password',
         text: 'Please click the following link to reset your password:',
         html: `<p>Please click the following link to verify your email address:</p>
-        <a href="http://localhost:4200/confirm-password?token=${this.passwordResetToken}">Reset password</a>`
+        <a href="https://app.volunteerm.online/confirm-password?token=${this.passwordResetToken}">Reset password</a>`
       });
   
       console.log(`Password reset email sent: ${info.messageId}`);
