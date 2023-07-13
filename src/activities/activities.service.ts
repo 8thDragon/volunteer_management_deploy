@@ -319,13 +319,13 @@ export class ActivitiesService {
           let user = await this.userModel.findByPk(activity.userId[i]);
           let addHours = user.received_hours + ac.received_hours;
           await user.update({ received_hours: addHours });
-          this.createNotifyFromFinishedActivity(
-            activity.userId[i],
-            ac.id,
-            `คุณได้เสร็จสิ้นกิจกรรม ${activity.userActivityName} ในวันที่ ${activity.date} และได้รับชั่วโมงการทำกิจกรรม ${ac.received_hours} ชม. เรียบร้อย สามารถรับเอกสารได้ในประวัติการทำกิจกรรม`,
-            activity.date,
-            false,
-          );
+          // this.createNotifyFromFinishedActivity(
+          //   activity.userId[i],
+          //   ac.id,
+          //   `คุณได้เสร็จสิ้นกิจกรรม ${activity.userActivityName} ในวันที่ ${activity.date} และได้รับชั่วโมงการทำกิจกรรม ${ac.received_hours} ชม. เรียบร้อย สามารถรับเอกสารได้ในประวัติการทำกิจกรรม`,
+          //   activity.date,
+          //   false,
+          // );
         }
       } else {
         return 'You already finish this event.';

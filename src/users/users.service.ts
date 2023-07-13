@@ -498,6 +498,9 @@ export class UsersService
     let notify = await this.notificationModel.findByPk(notifyDto.id);
     if (notify && notify.is_read != true) {
       await notify.update({ is_read: true });
+      return {
+        message: `change state ${notify.is_read} success`
+      }
     }
   }
 
