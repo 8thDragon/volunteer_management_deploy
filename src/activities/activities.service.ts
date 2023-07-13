@@ -368,6 +368,7 @@ export class ActivitiesService {
           [Op.gte]: date_now,
           [Op.lte]: date_check,
         },
+        is_read: false,
       },
       order: [['date', 'ASC']],
     });
