@@ -368,12 +368,14 @@ export class UsersService
       if (created) {
         if (postRatingsDto.ratings >= 0 && postRatingsDto.ratings <= 5) {
           await rating_data.update({ rated_point: postRatingsDto.ratings });
+          console.log('rating create--------------------------')
         } else {
           throw new BadRequestException('Rating out of range.');
         }
       } else {
         if (postRatingsDto.ratings >= 0 && postRatingsDto.ratings <= 5) {
           await rating_data.update({ rated_point: postRatingsDto.ratings });
+          console.log('rating update--------------------------')
         } else {
           throw new BadRequestException('Rating out of range.');
         }
